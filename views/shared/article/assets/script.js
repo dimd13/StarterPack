@@ -1,6 +1,6 @@
 import './style.css';
 
-import '../index.html'
+// import '../index.html.twig'
 
 // Generators
 var fibonacci = {

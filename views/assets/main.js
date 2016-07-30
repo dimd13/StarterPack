@@ -1,7 +1,7 @@
 // import base stylesheet
 import  './main.css';
 
-import  '../index.html';
+// import  '../layout.html.twig';
 
 // import module
 import Header from '../shared/header/assets/script';

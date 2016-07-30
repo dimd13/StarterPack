@@ -10,7 +10,7 @@ const config = {
         main: [
             'webpack/hot/dev-server',
             'webpack-hot-middleware/client',
-            './src/assets/main'
+            './views/assets/main'
         ]
     },
     output: {
@@ -34,15 +34,15 @@ const config = {
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
             },
             {
-                test: /\.html$/,
-                loader: "file-loader?name=[path][name].html&context=./src"
+                test: /\.html.twig$/,
+                loader: "file-loader?name=[path][name].[ext]&context=./views"
             }
         ]
     },
     plugins: [
         new ExtractTextPlugin('[name].css'),
         // new HtmlWebpackPlugin({
-        //     filename: './src/layout.html'
+        //     filename: './views/layout.html'
         // }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -51,7 +51,7 @@ const config = {
     postcss: function (webpack) {
         return [
             require('postcss-import')({
-                path: ['node_modules', './src']
+                path: ['node_modules', './views']
             }),
             require('autoprefixer')({
                 browsers: ['last 2 versions']
