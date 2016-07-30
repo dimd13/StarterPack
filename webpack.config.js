@@ -5,7 +5,7 @@ const path = require('path');
 const config = {
     devtool: 'source-map',
     entry: {
-        app: ['./app/assets/main']
+        app: ['./src/assets/main']
     },
     module: {
         loaders: [
