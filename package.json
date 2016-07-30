@@ -14,5 +14,19 @@
   "bugs": {
     "url": "https://github.com/ethyde/agnostic-srp/issues"
   },
-  "homepage": "https://github.com/ethyde/agnostic-srp#readme"
+  "dependencies": {
+    "babel-core": "^6.1.2",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.1.2",
+    "autoprefixer": "^6.3.6",
+    "css-loader": "^0.23.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "postcss-loader": "^0.9.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1"
+  },
+  "homepage": "https://github.com/ethyde/agnostic-srp#readme",
+  "devDependencies": {
+    "postcss-import": "^8.1.2"
+  }
 }
