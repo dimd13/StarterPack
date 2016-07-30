@@ -8,6 +8,8 @@ const config = {
     devtool: '#eval-source-map',
     entry: {
         main: [
+            'webpack/hot/dev-server',
+            'webpack-hot-middleware/client',
             './src/assets/main'
         ]
     },

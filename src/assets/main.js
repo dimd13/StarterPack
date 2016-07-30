@@ -1,7 +1,7 @@
 // import base stylesheet
 import  './main.css';
 
-import  '../layout.html';
+import  '../index.html';
 
 // import module
 import Header from '../shared/header/assets/script';

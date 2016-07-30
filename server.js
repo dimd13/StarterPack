@@ -1,45 +1,51 @@
-/* eslint no-console: 0 */
+/**
+ * Require Browsersync along with webpack and middleware for it
+ */
+var browserSync          = require('browser-sync').create();
+var webpack              = require('webpack');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+var stripAnsi            = require('strip-ansi');
 
-const path = require('path');
-const express = require('express');
-const webpack = require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require('./webpack.config');
-const http = require('http');;
+/**
+ * Require ./webpack.config.js and make a bundler from it
+ */
+var webpackConfig = require('./webpack.config');
+var bundler       = webpack(webpackConfig);
 
-const compiler = webpack(config);
-
-const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 3000 : process.env.PORT;
-const app = express();
-
-const middleware = webpackMiddleware(compiler, {
-        publicPath: config.output.publicPath,
-        stats: {
-            colors: true,
-            hash: false,
-            timings: true,
-            chunks: false,
-            chunkModules: false,
-            modules: false
-        }
-    });
-
-app.use( middleware );
-
-app.use( webpackHotMiddleware(compiler) );
-
-app.get("/", function(req, res) {
-    res.sendFile(__dirname + '/src/layout.html');
+/**
+ * Reload all devices when bundle is complete
+ * or send a fullscreen error message to the browser instead
+ */
+bundler.plugin('done', function (stats) {
+    if (stats.hasErrors() || stats.hasWarnings()) {
+        return browserSync.sockets.emit('fullscreen:message', {
+            title: "Webpack Error:",
+            body:  stripAnsi(stats.toString()),
+            timeout: 100000
+        });
+    }
+    browserSync.reload();
 });
 
-const server = http.createServer(app);
+/**
+ * Run Browsersync and use middleware for Hot Module Replacement
+ */
+browserSync.init({
+    server: 'src',
+    open: false,
+    logFileChanges: false,
+    middleware: [
+        webpackDevMiddleware(bundler, {
+            publicPath: webpackConfig.output.publicPath,
+            stats: {colors: true}
+        }),
 
-server.listen(3000, 'localhost', function(err) {
-  if (err) throw err;
-
-  const addr = server.address();
-
-  console.log('Listening at http://%s:%d', addr.address, addr.port);
+        webpackHotMiddleware(bundler)
+    ],
+    plugins: ['bs-fullscreen-message'],
+    files: [
+        'src/**/*.css',
+        'src/*.html'
+    ]
 });
