@@ -1,9 +1,10 @@
 {
   "name": "agnostic-srp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Base files, folder structure, components based, SRP.",
   "scripts": {
-    "test": "rimraf build && webpack"
+    "build": "rimraf build && webpack",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
