@@ -7,8 +7,264 @@
 {% block title %}{{parent()}} - Home{% endblock title %}
 
 {% block body %}
-    Article re
+    Article redev
     <div class="test">Class .test</div>
 	{#<div style="color:blue">{{ data.resource.id }}</div>
     <div style="color:pink">{{ dump( data.resource.paths[05] ) }}</div>#}
+{% endblock %}
+
+{#{% extends 'PMDVOIBundle::layout.html.twig' %}#}
+
+{% block metas_header %}
+    {{ parent() }}
+
+    {#<link rel="canonical" href="{{ article|resource_url({}, false) }}">#}
+    <link rel="alternate" href="android-app://com.dev.voici/voici/news/{{ article.resource.id }}" />
+{% endblock %}
+
+{% block content %}
+    {% spaceless %}
+
+    <div class="container site_content bg-white">
+        <div class="clearfix area">
+
+            <div id="article" itemscope="" itemtype="http://schema.org/NewsArticle">
+                {#<meta itemprop="mainEntityOfPage"  content="{{ article|resource_url({}, false) }}"/>#}
+                <div class="w-25--sm f-l ta-c regal p-h-sm p-sm c-black hidden-sm hidden-xs">
+                    {#<div data-gigya-mainreaction-article data-gigya-barId="{{article.resource.path}}" data-gigya-reaction-ids="fun,snif,buzz,wtf,sexy"
+                         data-gigya-template="<div class='iconsize-xl va-c ta-c b-all-black br-50'><p class='fs-4 fs-i fw-700 p-v-md'>$reaction</p></div>">
+                    </div>#}
+
+                    {% include "../../layout/mostViewedArticles.html.twig" with {'article': data} %}
+
+                    {#{{ render_esi('../../layout/mostViewedArticles.html.twig') }}#}
+
+                    {% if showHourPublished is not defined or showHourPublished %}
+                        <hr class="hr-xs c-black" />
+                        <span class="opensans fs-6 fw-400 lh-175 p-sm">
+                            {{ article.published|date('H') }}H{{ article.published|date('i') }}
+                        </span>
+                    {% endif %}
+                </div>
+                {#<div class="w-100--sm w-80--md w-90 f-l p-h-sm">
+                    <div class="article-title">
+                        {%include 'PMDVOIBundle:includes/annexes:breadcrumb.html.twig' with {'path': article.path } %}
+                    </div>
+                    <div class="article-title">
+                        {%include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'text': article.title, 'type': 'color'} %}
+                    </div>
+                    <div class="article-title">
+                    {% if showTitle is not defined or showTitle %}
+                        <h1 itemprop="headline" class="opensans fs-1 c-black fw-700 lh-125">{{ article.titleSeo }}</h1>
+                    {% endif %}
+                    {% if showSocialNetworks is not defined or showSocialNetworks %}
+                        <div id="gigya-sharebar-article" class="w-100--sm p-v-sm d-ib va-m" data-gigya-plugin="sharebar" data-gigya-shareButtons="facebook,twitter,googleplus,email" data-gigya-showCounts="none" data-gigya-template="<i class='icon icon-$provider p-h-sm c-$provider' onclick='$onClick'></i>"></div>                    {% endif %}
+                    </div>
+                </div>#}
+                {# Actu lead bloc #}
+                {#{% if showLeadImage is not defined or showLeadImage %}
+                    <div class="p-v-md b-bottom-grey-1">
+                        {%include 'PMDVOIBundle:includes/boxes:article-lead.html.twig' with {'article': article} %}
+                    </div>
+                {% endif %}#}
+                {# /Actu lead bloc #}
+                <div class="clearfix area p-v-sm">
+                    {# Left col #}
+                    {#<div class="w-100--md w-66 f-l p-h-sm">
+                        <div class="w-90--sm w-75 m-auto">
+                            {%include 'PMDVOIBundle:includes/annexes:date.html.twig' with {'article': article}  %}
+                            {%include 'PMDVOIBundle:includes:article.html.twig' with {'article': article} %}
+                            {%if firstRelatedPerson %}
+                                <div class="p-v-md hidden-md hidden-lg hidden-xl">
+                                    <a href="{{ firstRelatedPerson|resource_url() }}" class="btn">
+                                        {%include 'PMDVOIBundle:includes/annexes:star.html.twig' with {star: firstRelatedPerson} %}
+                                    </a>
+                                </div>
+                            {%endif %}
+                            <div class="p-v-md">
+                                {%include 'PMDVOIBundle:includes/annexes:tag.html.twig' %}
+                            </div>
+                            {% if showComments is not defined or showComments %}
+                                <div class="ta-c p-v-md">
+                                    <div class="m-v-sm">
+                                        {%include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'type': 'small', 'text': 'Réagissez !'} %}
+                                    </div>
+                                    <div class="d-ib">
+                                        <div id="gigya-reaction-article" class="gig-reaction-bar-article" data-gigya-plugin="reaction" data-gigya-barId="{{ article|resource_url }}" data-gigya-reactions="[{ID: fun, text: Fun, tooltip: C'est fun}, {ID:snif, text: Snif, tooltip: C'est triste}, {ID: buzz, text: Buzz, tooltip: Ça va buzzer}, {ID: wtf, text: WTF, tooltip: What the fuck}, {ID: sexy, text: Sexy, tooltip: C'est sexy}]" data-gigya-providers="facebook,twitter,googleplus" data-gigya-showCounts="top" data-gigya-multiple data-gigya-layout="horizontal"></div>
+                                    </div>
+                                    <div class="p-h-md p-v-sm">
+                                        <div id="gigya-comment-article" data-gigya-plugin="comment" data-gigya-streamID="{{ article.resource.id }}" data-gigya-categoryID="Articles" data-gigya-enabledShareProviders="facebook,twitter" data-gigya-width="100%"></div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="p-v-md">
+                            {%include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'type': 'small', 'text': 'Vous aimerez aussi'} %}
+                        </div>
+                        <div class="clearfix area">
+                            <div id="lig_voicifr_smartbox_articles"></div>
+                        </div>
+                        <div class="clearfix area">
+                            <div class="OUTBRAIN" data-src="{{ article|resource_url({}, false) }}" data-widget-id="AR_3" data-ob-template="voici" ></div>
+                        </div>
+                        <div class="p-sm">
+                            {%include 'PMDVOIBundle:includes/headings:popular-heading.html.twig' %}
+                        </div>
+
+                        {{- render_esi(url('pmd_voi_esi_layout_most-viewed-articles')) -}}
+
+                        <div class="p-v-md">
+                            <div class="m-v-sm">
+                                {%include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'type': 'small', 'text': '+ de vidéos'} %}
+                            </div>
+                            <div id="ultimedia_wrapper"></div>
+                        </div>
+
+                        {%if 0 < similarArticles|length %}
+                        <div class="p-sm">
+                            {%include 'PMDVOIBundle:includes/headings:same-theme.html.twig' %}
+                        </div>
+                        <div class="clearfix area pl-sm">
+                            {%for article in similarArticles %}
+                            <div class="w-100--sm w-100--md w-100 p-h-sm">
+                                {%include 'PMDVOIBundle:includes/boxes:news.html.twig' with {article: article} %}
+                            </div>
+                            {%endfor %}
+                        </div>
+                        {%endif %}
+
+                        {%if 0 < latestCategoryArticles|length %}
+                            <div class="p-sm">
+                                {%include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'type': 'small', 'text': 'Encore plus d\'actus people'} %}
+                            </div>
+                            <div class="clearfix area p-h-sm">
+                                {%for article in latestCategoryArticles %}
+                                <div class="w-100--sm w-100--md w-100 p-h-sm">
+                                    {%include 'PMDVOIBundle:includes/boxes:news.html.twig' with {article: article} %}
+                                </div>
+                                {%endfor %}
+                            </div>
+                            <div class="w-100--sm w-100--md w-100 p-h-sm ta-c pb-lg mt-lg">
+                                <a href="{{ article.category|resource_url() }}" class="t-bg-normal bg-branddark-hover br-sm bg-brand p-sm c-white tt-u fs-7 fw-700 lh-140">Voir plus de {{ article.category.title }}</a>
+                            </div>
+                        {%endif %}
+
+                        {% set relationsNotInSidebar = (firstRelatedPerson ? firstRelatedPerson|removeRelation(secondRelatedPerson).relations|slice(5) : []) %}
+                        {%if firstRelatedPerson.relations is defined and 0 < relationsNotInSidebar|length %}
+                            <div id="relations" class="p-v-md">
+                                {%include 'PMDVOIBundle:includes:headings/dynamic-heading.html.twig' with {type:"high", text:"Son entourage"} %}
+                            </div>
+                            {# Relations Gallery #}
+                            <div class="clearfix area">
+                            {#{% for relation in relationsNotInSidebar %}
+                                {%if loop.index0 < 4 %}
+                                    <div class="w-50--sm w-50--md w-25 f-l p-h-sm m-v-sm">
+                                        {%include 'PMDVOIBundle:includes:boxes/stars.html.twig' with {star: relation.person} %}
+                                    </div>
+                                    {% if loop.index0 is divisible by(4) and loop.index0 > 0 %}
+                                        </div>
+                                        <div class="clearfix area">
+                                    {%endif %}
+                                {%elseif loop.index0 < 7 %}
+                                    <div class="w-100--sm w-100--md w-33 f-l p-h-sm m-v-sm hidden-xs hidden-sm">
+                                        {%include 'PMDVOIBundle:includes:boxes/stars.html.twig' with {star: relation.person} %}
+                                    </div>
+                                    {% if loop.index0 is divisible by(7) %}
+                                        </div>
+                                        <div class="clearfix area">
+                                    {%endif %}
+                                {%else %}
+                                    <div class="w-50--sm w-50--md w-25 f-l p-h-sm m-v-sm">
+                                        {%include 'PMDVOIBundle:includes:boxes/stars.html.twig' with {star: relation.person} %}
+                                    </div>
+                                {%endif %}
+                            {%endfor %}#}
+                            </div>
+                            {# /Relations Gallery #}
+                        {#{% endif %}#}
+
+                    </div>
+                    {# /Left col #}
+                    {# Right col #}
+                    <div class="w-100--md w-33 f-l p-h-sm">
+                        <div class="clearfix area p-v-sm ta-c">
+                            <div class="f-l w-100--sm w-100--md w-100 p-h-sm">
+                                {#{{- pmd_sas_add('desktop', 'pave') -}}#}
+                            </div>
+                        </div>
+                        <div class="p-v-md pl-sm">
+                            {#{% include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'text': 'Le meilleur de la vidéo', 'type': 'small'} %}#}
+                        </div>
+                        <div class="pl-sm">
+                            {#{{ render_esi(url('pmd_voi_esi_layout_carousel-videos')) }}#}
+                        </div>
+                        <div class="p-v-md pl-sm">
+                            {#{% include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'text': 'A voir aussi', 'type': 'small'} %}#}
+                        </div>
+                        <div class="clearfix area">
+                            <div id="lig_voicifr_side_articles"></div>{# ligatus #}
+                        </div>
+                        {#{% if firstRelatedPerson and article.relatedPeople is defined and 0 < article.relatedPeople|length and 0 < firstRelatedPersonArticles|length %}
+                            <div class="p-v-md">
+                                {%include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'text': '+ de News sur '~firstRelatedPerson.fullname , 'type': 'small'} %}
+                            </div>
+
+                            {% for relatedArticle in firstRelatedPersonArticles %}
+                                {% include 'PMDVOIBundle:includes/boxes:article-news.html.twig' with {article: relatedArticle, type: (4>loop.index)?'withImage':'withoutImage' } %}
+                            {% endfor %}
+                        {% endif %}#}
+
+                        <div class="p-v-md pl-sm">
+                            {#{% include 'PMDVOIBundle:includes/headings:dynamic-heading.html.twig' with {'text': 'Vous aimerez aussi', 'type': 'small'} %}#}
+                        </div>
+                        <div class="clearfix area">
+                            <div id="lig_voici_smartbox"></div>{# ligatus #}
+                        </div>
+                        <div class="clearfix area ta-c">
+                            <div class="f-l w-100--sm w-100--md w-100 p-h-sm">
+                                {#{% include "PMDVOIBundle:includes/features:shopping.html.twig" %}#}
+                            </div>
+                        </div>
+                        <div class="clearfix area pb-sm ta-c">
+                            {#{{ render_esi(url('pmd_voi_esi_layout_pushes-sidebar')) -}}#}
+                        </div>
+                        <div class="clearfix area ta-c">
+                            <div class="f-l w-100--sm w-100--md w-100 p-h-sm">
+                                {#{%include 'PMDVOIBundle:includes:features/subscription.html.twig' %}#}
+                            </div>
+                        </div>
+                        {%if linkbooster.linkboosters.sidebar is defined %}
+                        <div class="clearfix area">
+                            <div class="f-l w-100--sm w-100--md w-100 p-h-sm">
+                                {#{% include 'PMDVOIBundle:includes/annexes:more-news.html.twig' with {linkbooster: linkbooster.linkboosters.sidebar} %}#}
+                            </div>
+                        </div>
+                        {%endif %}
+                        <div class="clearfix area ta-c">
+                            <div class="f-l w-100--sm w-100--md w-100 p-h-sm">
+                                {#{{- pmd_sas_add('desktop', 'bouton') -}}#}
+                            </div>
+                        </div>
+                        <div class="clearfix area ta-c">
+                            <div class="f-l w-100--sm w-100--md w-100 p-h-sm">
+                                {#{{- google_adsense_add('article') -}}#}
+                            </div>
+                        </div>
+                    </div>
+                    {# /Right col #}
+                </div>
+            </div>
+            {#{% if firstRelatedPerson %}
+                {% include 'PMDVOIBundle:includes:sidebar.html.twig' with {person: firstRelatedPerson, secondRelatedPerson: secondRelatedPerson} %}
+            {% endif %}#}
+
+        </div>
+
+    </div>
+
+    {#{% if requestedPage <= videoCount %}
+        <div wibbitz="embed-main-player"></div>
+    {% endif %}#}
+
+    {% endspaceless %}
 {% endblock %}
