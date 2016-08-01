@@ -9,7 +9,6 @@ var browserSync          = require('browser-sync');
 var webpack              = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
-var stripAnsi            = require('strip-ansi');
 
 // /**
 //  * Require ./webpack.config.js and make a bundler from it
@@ -17,6 +16,8 @@ var stripAnsi            = require('strip-ansi');
 var webpackConfig = require('./webpack.config');
 var bundler       = webpack(webpackConfig);
 
+
+// Load Express for Twig
 var express = require('express');
 var fs = require('fs');
 
@@ -70,48 +71,40 @@ app.get('/', function(req, res) {
 
 app.listen(9000);
 
-// /**
 //  * Reload all devices when bundle is complete
 //  * or send a fullscreen error message to the browser instead
 //  */
-bundler.plugin('done', function (stats) {
-    if (stats.hasErrors() || stats.hasWarnings()) {
-        return browserSync.sockets.emit('fullscreen:message', {
-            title: "Webpack Error:",
-            body:  stripAnsi(stats.toString()),
-            timeout: 100000
-        });
-    }
-    browserSync.reload();
-});
+// bundler.plugin('done', function (stats) {
+//     browserSync.reload();
+// });
 
 // /**
 //  * Run Browsersync and use middleware for Hot Module Replacement
 //  */
 browserSync({
-    proxy: 'localhost:9000',
     open: false,
-    port: '3000',
     logFileChanges: true,
     timestamps: true,
-    middleware: [
-        webpackDevMiddleware(bundler, {
-            publicPath: webpackConfig.output.publicPath,
-            stats: {
-                colors: true,
-                hash: false,
-                timings: true,
-                chunks: false,
-                chunkModules: false,
-                modules: false
-            }
-        }),
+    proxy: {
+        target : 'localhost:9000',
+        middleware: [
+            webpackDevMiddleware(bundler, {
+                publicPath: webpackConfig.output.publicPath,
+                stats: {
+                    colors: true,
+                    hash: false,
+                    timings: true,
+                    chunks: false,
+                    chunkModules: false,
+                    modules: false
+                }
+            }),
 
-        // webpackHotMiddleware(bundler)
-    ],
+            webpackHotMiddleware(bundler)
+        ]
+    },
     files: [
         'views/**/*.css',
         'views/**/*.html.twig'
-    ],
-    plugins: ['bs-fullscreen-message']
+    ]
 });

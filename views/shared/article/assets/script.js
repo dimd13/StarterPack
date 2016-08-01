@@ -1,19 +1,11 @@
 import './style.css';
 
-import '../index.html.twig'
+import '../index.html.twig';
 
-// Generators
-var fibonacci = {
-    [Symbol.iterator]: function*() {
-        var pre = 0,
-            cur = 1;
-        for (;;) {
-            var temp = pre;
-            pre = cur;
-            cur += temp;
-            yield cur;
-        }
-    }
+if(module.hot) {
+    module.hot.accept();
 }
+
+var clog = console.log("console log de la page article");
  
-module.exports = fibonacci;
+module.exports = clog;
