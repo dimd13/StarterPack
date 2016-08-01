@@ -13,7 +13,7 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 // /**
 //  * Require ./webpack.config.js and make a bundler from it
 //  */
-var webpackConfig = require('./webpack.config');
+var webpackConfig = require('./webpack.dev.config');
 var bundler       = webpack(webpackConfig);
 
 
@@ -84,7 +84,6 @@ app.listen(9000);
 browserSync({
     open: false,
     logFileChanges: true,
-    timestamps: true,
     proxy: {
         target : 'localhost:9000',
         middleware: [

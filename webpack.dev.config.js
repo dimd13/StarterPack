@@ -35,16 +35,6 @@ const config = {
                 test: /\.html.twig$/,
                 loader: "twig-loader"
             }
-            // For build
-            // {
-            //     test: /\.css$/,
-            //     exclude: /node_modules/,
-            //     loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
-            // },
-            // {
-            //     test: /\.html.twig$/,
-            //     loader: "file-loader?name=[path][name].[ext]&context=./views"
-            // }
         ]
     },
     plugins: [

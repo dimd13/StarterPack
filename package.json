@@ -3,8 +3,9 @@
   "version": "0.0.2",
   "description": "Base files, folder structure, components based, SRP.",
   "scripts": {
-    "build": "rimraf build && webpack",
-    "start": "node server"
+    "build": "rimraf build && webpack --progress --colors --config webpack.prod.config.js",
+    "dev": "node server",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
