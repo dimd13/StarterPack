@@ -5,7 +5,7 @@
 // /**
 //  * Require Browsersync along with webpack and middleware for it
 //  */
-var browserSync          = require('browser-sync').create();
+var browserSync          = require('browser-sync');
 var webpack              = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
@@ -24,7 +24,7 @@ var app = express();
 
 var objData;
 
-// This section is optional and used to configure twig. 
+// // This section is optional and used to configure twig. 
 app.set("twig options", {
     strict_variables: false
 });
@@ -35,7 +35,7 @@ app.set("twig options", {
 // });
 
 // Just a visit counter
-var nbVisits = 0;
+// var nbVisits = 0;
 
 app.get('/', function(req, res) {
     /*nbVisits++;*/
@@ -88,10 +88,12 @@ bundler.plugin('done', function (stats) {
 // /**
 //  * Run Browsersync and use middleware for Hot Module Replacement
 //  */
-browserSync.init({
+browserSync({
     proxy: 'localhost:9000',
     open: false,
+    port: '3000',
     logFileChanges: true,
+    timestamps: true,
     middleware: [
         webpackDevMiddleware(bundler, {
             publicPath: webpackConfig.output.publicPath,
@@ -107,7 +109,6 @@ browserSync.init({
 
         webpackHotMiddleware(bundler)
     ],
-    plugins: ['bs-fullscreen-message'],
     files: [
         'views/**/*.css',
         'views/**/*.html.twig'

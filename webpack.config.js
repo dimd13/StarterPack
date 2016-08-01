@@ -41,9 +41,6 @@ const config = {
     },
     plugins: [
         new ExtractTextPlugin('[name].css'),
-        // new HtmlWebpackPlugin({
-        //     filename: './views/layout.html'
-        // }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
