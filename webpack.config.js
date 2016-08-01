@@ -35,7 +35,7 @@ const config = {
             },
             {
                 test: /\.html.twig$/,
-                loader: "file-loader?name=[path][name].[ext]&context=./views"
+                loader: "twig-loader"
             }
         ]
     },

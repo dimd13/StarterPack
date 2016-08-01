@@ -107,10 +107,11 @@ browserSync({
             }
         }),
 
-        webpackHotMiddleware(bundler)
+        // webpackHotMiddleware(bundler)
     ],
     files: [
         'views/**/*.css',
         'views/**/*.html.twig'
-    ]
+    ],
+    plugins: ['bs-fullscreen-message']
 });
