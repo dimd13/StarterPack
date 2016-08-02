@@ -5,27 +5,27 @@
 // /**
 //  * Require Browsersync along with webpack and middleware for it
 //  */
-var browserSync          = require('browser-sync');
-var webpack              = require('webpack');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
-
-var fs = require('fs');
-
-// /**
-//  * Require ./webpack.config.js and make a bundler from it
-//  */
-var webpackConfig = require('./webpack.dev.config');
-var bundler       = webpack(webpackConfig);
+const browserSync          = require('browser-sync');
+const webpack              = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const fs = require('fs');
+const express = require('express');
 
 
+/**
+ * Require ./webpack.config.js and make a bundle with it
+ */
+const webpackConfig = require('./webpack.dev.config');
+const bundler       = webpack(webpackConfig);
 // Load Express for Twig
-var express = require('express');
-var fs = require('fs');
+const app = express();
 
-var app = express();
+/**
+ * Define empty object to store data
+ */
 
-var objData;
+const objData;
 
 // // This section is optional and used to configure twig. 
 app.set("twig options", {
@@ -37,11 +37,7 @@ fs.readFile('./data/article_photos-khloe-kardashian-la-soeur-de-kim-montre-aussi
     objData = JSON.parse(data);
 });
 
-// Just a visit counter
-// var nbVisits = 0;
-
 app.get('/', function(req, res) {
-    /*nbVisits++;*/
     res.render('./shared/article/index.html.twig', {
        data: objData
     });
@@ -71,18 +67,21 @@ app.get('/', function(req, res) {
 //     res.end('You want to see my ' + req.params.color + ' ' + req.params.brand + '? Follow me.');
 // });
 
+/*
+ * Express server to listen on port : 9000
+ */
 app.listen(9000);
 
-//  * Reload all devices when bundle is complete
-//  * or send a fullscreen error message to the browser instead
-//  */
+/*
+ * If needed Reload all devices when bundle is complete
+ */
 // bundler.plugin('done', function (stats) {
 //     browserSync.reload();
 // });
 
-// /**
-//  * Run Browsersync and use middleware for Hot Module Replacement
-//  */
+/**
+ * Run Browsersync and use middleware for Hot Module Replacement
+ */
 browserSync({
     open: false,
     logFileChanges: true,
@@ -106,6 +105,7 @@ browserSync({
     },
     files: [
         'views/**/*.css',
+        'views/**/*.js',
         'views/**/*.html.twig'
     ]
 });

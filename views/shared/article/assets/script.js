@@ -1,11 +1,7 @@
-import './style.css';
+require('./style.css');
 
-import '../index.html.twig';
+require('../index.html.twig');
 
-if(module.hot) {
-    module.hot.accept();
-}
-
-var clog = console.log("console log de la page article redetde");
+var clog = console.log("console log de la page article");
  
 module.exports = clog;

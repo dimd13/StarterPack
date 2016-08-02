@@ -3,9 +3,10 @@
   "version": "0.0.2",
   "description": "Base files, folder structure, components based, SRP.",
   "scripts": {
-    "build": "rimraf build && webpack --progress --colors --config webpack.prod.config.js",
-    "dev": "node server",
-    "start": "npm run dev"
+    "prod:build": "rimraf build && webpack --progress --colors --config webpack.prod.config.js",
+    "dev:server": "node server",
+    "dev:build": "rimraf build && webpack --progress --colors --config webpack.dev.config.js",
+    "start": "npm run dev:server"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
+    "image-webpack-loader": "^2.0.0",
+    "jquery": "^3.1.0",
     "monkey-hot-loader": "0.0.3",
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.9.1",

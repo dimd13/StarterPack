@@ -4,7 +4,7 @@ const path = require('path');
 
 
 const config = {
-    devtool: '#eval-source-map',
+    devtool: 'inline-source-map',
     entry: [
         'webpack/hot/dev-server',
         'webpack-hot-middleware/client',
@@ -20,7 +20,7 @@ const config = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: ['babel-loader'],
+                loader: ['babel'],
                 query: {
                     presets: ['es2015'],
                     plugins: ["transform-runtime"]
@@ -30,16 +30,25 @@ const config = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
             },
             {
                 test: /\.html.twig$/,
-                loader: "file-loader?name=[path][name].[ext]&context=./views"
+                loader: "file?name=[path][name].[ext]&context=./views"
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'file?&name=[path][name].[ext]&context=./views',
+                    'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                ]
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].css'),
+        new ExtractTextPlugin("[name].css",{
+            allChunks: true
+        }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()
@@ -55,7 +64,14 @@ const config = {
         ];
     },
     resolve: {
-        // extensions: ['', '.twig', '.css', '.js']
+        root: path.resolve(__dirname),
+        alias: {
+            shared: '../shared/',
+            home: 'components/home',
+            utility: 'components/common/utility',
+            textService: 'services/textService'
+        },
+        extensions: ['', '.js', '.css']
     },
 }
 

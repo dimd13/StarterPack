@@ -1,15 +1,18 @@
-// import base stylesheet
+// import stylesheet
 import  './main.css';
 
+// import template
 import  '../layout.html.twig';
 
-if(module.hot) {
-    module.hot.accept();
-}
+// import img
+import './img/sample.jpg';
+
+// import vendor
+import jQuery from 'vendor/jquery';
 
 // import module
-import Header from '../shared/header/assets/script';
-import Article from '../shared/article/assets/script';
+import Header from 'shared/header/assets/script';
+import Article from 'shared/article/assets/script';
 
 // Generators
 var fibonacci = {
