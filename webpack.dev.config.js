@@ -4,7 +4,7 @@ const path = require('path');
 
 const config = {
     devtool: '#inline-source-map',
-    context: path.join(__dirname, 'views'),
+    context: path.join(__dirname, 'src'),
     entry: [
         'webpack/hot/dev-server',
         'webpack-hot-middleware/client',
@@ -62,10 +62,10 @@ const config = {
     resolve: {
         root: path.resolve(__dirname),
         alias: {
-            shared: '../shared',
+            template: 'src/views',
             vendor: 'node_modules'
         },
-        modulesDirectories: ['node_modules', 'views'],
+        modulesDirectories: ['node_modules', 'src'],
         extensions: ['', '.js']
     },
 }

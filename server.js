@@ -29,7 +29,10 @@ const objData;
 
 // // This section is optional and used to configure twig. 
 app.set("twig options", {
-    strict_variables: false
+    strict_variables: false,
+    namespaces: {
+        'layout': './src/views/'
+    }
 });
 
 fs.readFile('./data/article_photos-khloe-kardashian-la-soeur-de-kim-montre-aussi-ses-fesses-en-une-d-un-magazine-566014.json', 'utf8', function (err, data) {
@@ -38,7 +41,7 @@ fs.readFile('./data/article_photos-khloe-kardashian-la-soeur-de-kim-montre-aussi
 });
 
 app.get('/', function(req, res) {
-    res.render('./shared/article/index.html.twig', {
+    res.render('./src/views/shared/article/index.html.twig', {
        data: objData
     });
 });

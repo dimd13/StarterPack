@@ -2,7 +2,7 @@
 import  './main.css';
 
 // import template
-import  '../layout.html.twig';
+import  'template/layout.html.twig';
 
 // import img
 import './img/sample.jpg';
@@ -11,8 +11,8 @@ import './img/sample.jpg';
 import jQuery from 'vendor/jquery';
 
 // import module
-import Header from 'shared/header/assets/script';
-import Article from 'shared/article/assets/script';
+import Header from 'template/shared/header/assets/script';
+import Article from 'template/shared/article/assets/script';
 
 // Generators
 var fibonacci = {
