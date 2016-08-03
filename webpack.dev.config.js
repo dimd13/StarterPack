@@ -11,7 +11,7 @@ const config = {
         './assets/main'
     ],
     output: {
-        filename: '[name].js',
+        filename: './assets/[name].js',
         path: path.join(__dirname, 'build'),
         publicPath: 'http://localhost:3000/'
     },
@@ -38,7 +38,7 @@ const config = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?&name=[path][name].[ext]',
+                    'file?&name=./assets/img/[name].[ext]',
                     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             }

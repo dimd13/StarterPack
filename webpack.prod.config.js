@@ -4,14 +4,9 @@ const path = require('path');
 
 
 const config = {
-    devtool: 'inline-source-map',
-    entry: [
-        'webpack/hot/dev-server',
-        'webpack-hot-middleware/client',
-        './views/assets/main'
-    ],
+    entry: './views/assets/main',
     output: {
-        filename: '[name].js',
+        filename: './assets/[name].js',
         path: path.join(__dirname, 'build'),
         publicPath: '/'
     },
@@ -39,14 +34,14 @@ const config = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?&name=[path][name].[ext]&context=./views',
+                    'file?&name=./assets/img/[name].[ext]',
                     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin("[name].css",{
+        new ExtractTextPlugin("./assets/[name].css",{
             allChunks: true
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
@@ -66,12 +61,11 @@ const config = {
     resolve: {
         root: path.resolve(__dirname),
         alias: {
-            shared: '../shared/',
-            home: 'components/home',
-            utility: 'components/common/utility',
-            textService: 'services/textService'
+            shared: '../shared',
+            vendor: 'node_modules'
         },
-        extensions: ['', '.js', '.css']
+        modulesDirectories: ['node_modules', 'views'],
+        extensions: ['', '.js']
     },
 }
 
