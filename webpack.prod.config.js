@@ -4,14 +4,10 @@ const path = require('path');
 
 
 const config = {
-    devtool: 'inline-source-map',
-    entry: [
-        'webpack/hot/dev-server',
-        'webpack-hot-middleware/client',
-        './views/assets/main'
-    ],
+    context: path.join(__dirname, 'src'),
+    entry: 'index',
     output: {
-        filename: '[name].js',
+        filename: 'assets/[name].js',
         path: path.join(__dirname, 'build'),
         publicPath: '/'
     },
@@ -30,23 +26,23 @@ const config = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
+                loader: ExtractTextPlugin.extract('style', 'css!postcss?')
             },
             {
                 test: /\.html.twig$/,
-                loader: "file?name=[path][name].[ext]&context=./views"
+                loader: "file?name=[path][name].[ext]"
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?&name=[path][name].[ext]&context=./views',
+                    'file?&name=assets/img/[name].[ext]',
                     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin("[name].css",{
+        new ExtractTextPlugin("assets/[name].css",{
             allChunks: true
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
@@ -56,7 +52,7 @@ const config = {
     postcss: function (webpack) {
         return [
             require('postcss-import')({
-                path: ['node_modules', './views']
+                path: ['node_modules', './src']
             }),
             require('autoprefixer')({
                 browsers: ['last 2 versions']
@@ -66,12 +62,11 @@ const config = {
     resolve: {
         root: path.resolve(__dirname),
         alias: {
-            shared: '../shared/',
-            home: 'components/home',
-            utility: 'components/common/utility',
-            textService: 'services/textService'
+            template: 'src/views',
+            vendor: 'node_modules'
         },
-        extensions: ['', '.js', '.css']
+        modulesDirectories: ['node_modules', 'src'],
+        extensions: ['', '.js']
     },
 }
 

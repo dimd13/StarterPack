@@ -8,7 +8,7 @@ const config = {
     entry: [
         'webpack/hot/dev-server',
         'webpack-hot-middleware/client',
-        './assets/main'
+        'index'
     ],
     output: {
         filename: '[name].js',
@@ -38,7 +38,7 @@ const config = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?&name=[path][name].[ext]',
+                    'file?&name=./assets/img/[name].[ext]',
                     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             }

@@ -12,7 +12,6 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const fs = require('fs');
 const express = require('express');
 
-
 /**
  * Require ./webpack.config.js and make a bundle with it
  */
@@ -20,6 +19,9 @@ const webpackConfig = require('./webpack.dev.config');
 const bundler       = webpack(webpackConfig);
 // Load Express for Twig
 const app = express();
+
+app.set('views', __dirname + '/src/views');
+app.set('view engine', 'twig');
 
 /**
  * Define empty object to store data
@@ -29,11 +31,13 @@ const objData;
 
 // // This section is optional and used to configure twig. 
 app.set("twig options", {
-    strict_variables: false,
-    namespaces: {
-        'layout': './src/views/'
-    }
+    strict_variables: false
 });
+
+// console.log(twig);
+
+// app.set('src', __dirname + '/views');
+// app.set('view engine', 'twig');
 
 fs.readFile('./data/article_photos-khloe-kardashian-la-soeur-de-kim-montre-aussi-ses-fesses-en-une-d-un-magazine-566014.json', 'utf8', function (err, data) {
     if (err) throw err; // we'll not consider error handling for now
@@ -41,7 +45,7 @@ fs.readFile('./data/article_photos-khloe-kardashian-la-soeur-de-kim-montre-aussi
 });
 
 app.get('/', function(req, res) {
-    res.render('./src/views/shared/article/index.html.twig', {
+    res.render('./shared/article/index.html.twig', {
        data: objData
     });
 });
@@ -107,8 +111,8 @@ browserSync({
         ]
     },
     files: [
-        'views/**/*.css',
-        'views/**/*.js',
-        'views/**/*.html.twig'
+        'src/**/*.css',
+        'src/**/*.js',
+        'src/**/*.html.twig'
     ]
 });

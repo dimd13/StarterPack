@@ -1,7 +1,8 @@
-require('./style.css');
+import './style.css';
 
-require('../index.html.twig');
+// import template
+import  '../index.html.twig';
 
-var clog = console.log("console log de la page article");
+var clog = console.log("console log de la page article 25");
  
 module.exports = clog;

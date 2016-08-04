@@ -7,15 +7,10 @@ import  'template/layout.html.twig';
 // import img
 import './img/sample.jpg';
 
-// import vendor
-import jQuery from 'vendor/jquery';
-
-// import module
-import Header from 'template/shared/header/assets/script';
-import Article from 'template/shared/article/assets/script';
+const clog = console.log("console log de la page home");
 
 // Generators
-var fibonacci = {
+const fibonacci = {
     [Symbol.iterator]: function*() {
         var pre = 0,
             cur = 1;
@@ -28,4 +23,4 @@ var fibonacci = {
     }
 }
 
-module.exports = fibonacci;
+export { clog, fibonacci };
