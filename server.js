@@ -50,29 +50,22 @@ app.get('/', function(req, res) {
     });
 });
 
-// app.get('/', function(req, res) {
-//     /*nbVisits++;*/
-//     res.render('home/home.twig', {
-//        data: objData
-//     });
-// });
+app.get('/article', function(req, res) {
+    nbVisits++;
+    res.render('Article/view.html.twig', {
+       visits: nbVisits
+    });
+});
 
-// app.get('/article', function(req, res) {
-//     nbVisits++;
-//     res.render('Article/view.html.twig', {
-//        visits: nbVisits
-//     });
-// });
+app.get('/cars', function(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.end("Here are my cars. Beautiful collection, isn't it?");
+});
 
-// app.get('/cars', function(req, res) {
-//     res.setHeader('Content-Type', 'text/plain');
-//     res.end("Here are my cars. Beautiful collection, isn't it?");
-// });
-
-// app.get('/cars/:brand/:color', function(req, res) {
-//     res.setHeader('Content-Type', 'text/plain');
-//     res.end('You want to see my ' + req.params.color + ' ' + req.params.brand + '? Follow me.');
-// });
+app.get('/cars/:brand/:color', function(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('You want to see my ' + req.params.color + ' ' + req.params.brand + '? Follow me.');
+});
 
 /*
  * Express server to listen on port : 9000

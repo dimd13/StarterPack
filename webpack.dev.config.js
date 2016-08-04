@@ -1,6 +1,8 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var styleLintPlugin = require('stylelint-webpack-plugin');
 
 const config = {
     devtool: '#inline-source-map',
@@ -16,6 +18,13 @@ const config = {
         publicPath: 'http://localhost:3000/'
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                loader: 'eslint',
+                exclude: /node_modules/
+            }
+        ],
         loaders: [
             {
                 test: /\.js$/,
@@ -47,18 +56,15 @@ const config = {
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new styleLintPlugin({
+            configFile: '.stylelintrc',
+            context: 'src',
+            files: '**/*.css',
+            failOnError: false,
+            quiet: false
+        })
     ],
-    postcss: function (webpack) {
-        return [
-            require('postcss-import')({
-                addDependencyTo: webpack
-            }),
-            require('autoprefixer')({
-                browsers: ['last 2 versions']
-            })
-        ];
-    },
     resolve: {
         root: path.resolve(__dirname),
         alias: {
@@ -68,6 +74,21 @@ const config = {
         modulesDirectories: ['node_modules', 'src'],
         extensions: ['', '.js']
     },
+    postcss: function (webpack) {
+        return [
+            require('stylelint'),
+            require('postcss-import')({
+                addDependencyTo: webpack
+            }),
+            
+            require('autoprefixer')({
+                browsers: ['last 2 versions']
+            })
+        ];
+    },
+    eslint: {
+        configFile: '.eslintrc'
+    }
 }
 
 module.exports = config
