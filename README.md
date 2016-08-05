@@ -13,7 +13,4 @@ After  ```$ git clone``` make a ```$ npm install``` install all your needed NPM 
 
 # Tools 
 
-* [rimraf](https://github.com/isaacs/rimraf) for a better ```rm -rf````
-    ```npm run rimraf path/to/fileOrFolder```
-* [shrinkpack](https://www.npmjs.com/package/shrinkpack) for a better npm lockdown version. After add/remove/update a package launch
-    ```npm prune && npm dedupe && npm shrinkwrap --dev && npm run shrinkpack```
+* [rimraf](https://github.com/isaacs/rimraf) for a better ```rm -rf``` : ```npm run rimraf path/to/fileOrFolder```
