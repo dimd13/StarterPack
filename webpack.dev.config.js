@@ -12,7 +12,7 @@ const config = {
         'index'
     ],
     output: {
-        filename: '[name].js',
+        filename: 'assets/[name].js',
         path: path.join(__dirname, 'build'),
         publicPath: 'http://localhost:3000/'
     },
@@ -59,6 +59,11 @@ const config = {
         },
         modulesDirectories: ['node_modules', 'src'],
         extensions: ['', '.js']
+    },
+    externals: {
+        // require("jquery") is external and available
+        //  on the global var jQuery
+        "customImport": "Zepto"
     },
     postcss: function (webpack) {
         return [

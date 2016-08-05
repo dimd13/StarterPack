@@ -19,17 +19,12 @@ var cred = {
 
 var x = new MyClass(cred);
 
-//Ritesh Kumar
+//Ritesh Kumaro
 console.log(x.getName()); 
 
-// Load $ has module, and use it
-
-// if you want dependancy was bundled with all other scripts, require it like that, and remove browserify-shim from package.json
-// var $ = require('./vendor/jquery-2.2.0.min.js');
-// 
-// But if you want your depency stay external, require it like that and add browserify-shim
-// var $ = require('jquery');
-// or in ES6
+// Load Vendor or/and external dependencys
+// with, or not, to be included to the build
+//
 // import $ from 'vendor/jquery/dist/jquery';
 // where vendor are an alias to node_modules
 
@@ -44,3 +39,12 @@ $(document).ready( function(){
     });
 
 });
+
+// import Zepto but without include it to the build
+import Zepto from 'customImport';
+
+Zepto(function($){
+
+    alert('Ready to Zepto!')
+
+})

@@ -54,16 +54,6 @@ const config = {
             }
         })
     ],
-    postcss: function (webpack) {
-        return [
-            require('postcss-import')({
-                path: ['node_modules', './src']
-            }),
-            require('autoprefixer')({
-                browsers: ['last 2 versions']
-            })
-        ];
-    },
     resolve: {
         root: path.resolve(__dirname),
         alias: {
@@ -73,6 +63,21 @@ const config = {
         modulesDirectories: ['node_modules', 'src'],
         extensions: ['', '.js']
     },
+    externals: {
+        // require("jquery") is external and available
+        //  on the global var jQuery
+        "customImport": "Zepto"
+    },
+    postcss: function (webpack) {
+        return [
+            require('postcss-import')({
+                path: ['node_modules', './src']
+            }),
+            require('autoprefixer')({
+                browsers: ['last 2 versions']
+            })
+        ];
+    }
 }
 
 module.exports = config

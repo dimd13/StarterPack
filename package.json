@@ -1,6 +1,6 @@
 {
   "name": "agnostic-srp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Base files, folder structure, components based, SRP.",
   "scripts": {
     "start": "npm run dev:server",

@@ -3,15 +3,15 @@ import './style.css';
 // import template
 import  '../index.html.twig';
 
-var clog = console.log("console log de la page article 25");
+const clog = console.log("console log de la page article 25");
 
-var sum = (a, b = 6) => (a + b);
+const sum = (a, b = 6) => (a + b);
 
-var square = (b) => {
+const square = (b) => {
     return b * b;
 };
 
-var variable = 8;
+const variable = 8;
 
 class MyClass {
     constructor(credentials) {
@@ -22,5 +22,14 @@ class MyClass {
         return this.name;
     }
 }
+
+// Test for multiple import dependency
+import jQuery from 'vendor/jquery/dist/jquery';
+
+jQuery(document).ready( function(){
+
+    console.log( 'ok' );
+
+} );
 
 export { sum, square, variable, MyClass, clog };
