@@ -5,15 +5,18 @@
   "scripts": {
     "start": "npm run dev:server",
     "dev:server": "node server",
-    "rimraf": "./node_modules/.bin/rimraf",
-    "build:prod": "rimraf build && webpack --progress --colors --config webpack.prod.config.js",
+    "build:prod": "npm run rimraf build && webpack --progress --colors --config webpack.prod.config.js",
+
     "eslint": "./node_modules/.bin/eslint",
     "eslint:test": "eslint -c .eslintrc ./src/**/*.js || true",
     "eslint:format": "eslint:bin -c .eslintrc --fix ./src/**/*.js",
     "stylelint": "./node_modules/.bin/stylelint",
     "stylelint:test": "stylelint './src/**/*.css' --config .stylelintrc || true",
     "stylefmt": "./node_modules/.bin/stylefmt",
-    "stylefmt:format": "stylefmt -c .stylelintrc -R ./src/"
+    "stylefmt:format": "stylefmt -c .stylelintrc -R ./src/",
+
+    "rimraf": "./node_modules/.bin/rimraf",
+    "shrinkpack": "./node_modules/.bin/shrinkpack"
   },
   "repository": {
     "type": "git",
@@ -50,6 +53,7 @@
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.9.1",
     "rimraf": "^2.5.4",
+    "shrinkpack": "^0.13.1",
     "style-loader": "^0.13.1",
     "stylefmt": "^4.2.3",
     "stylelint": "^7.1.0",
