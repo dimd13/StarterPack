@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-var styleLintPlugin = require('stylelint-webpack-plugin');
 
 const config = {
     devtool: '#inline-source-map',
