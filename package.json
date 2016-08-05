@@ -53,7 +53,6 @@
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.9.1",
     "rimraf": "^2.5.4",
-    "shrinkpack": "^0.13.1",
     "style-loader": "^0.13.1",
     "stylefmt": "^4.2.3",
     "stylelint": "^7.1.0",
