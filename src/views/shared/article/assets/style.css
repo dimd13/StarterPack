@@ -1,9 +1,9 @@
 .test {
-    font-size : 25px;
+    font-size: 25px;
     font-weight: bold;
     background: url('img/background.jpg');
 }
 
 :fullscreen a {
-    display: flex
+    display: flex;
 }

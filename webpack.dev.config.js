@@ -18,13 +18,6 @@ const config = {
         publicPath: 'http://localhost:3000/'
     },
     module: {
-        preLoaders: [
-            {
-                test: /\.js$/,
-                loader: 'eslint',
-                exclude: /node_modules/
-            }
-        ],
         loaders: [
             {
                 test: /\.js$/,
@@ -76,7 +69,6 @@ const config = {
     },
     postcss: function (webpack) {
         return [
-            require('stylelint'),
             require('postcss-import')({
                 addDependencyTo: webpack
             }),
@@ -85,9 +77,6 @@ const config = {
                 browsers: ['last 2 versions']
             })
         ];
-    },
-    eslint: {
-        configFile: '.eslintrc'
     }
 }
 
