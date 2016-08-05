@@ -35,6 +35,7 @@ const config = {
             },
             {
                 test: /\.html.twig$/,
+                exclude: /node_modules/,
                 loader: "twig"
             },
             {
@@ -49,14 +50,7 @@ const config = {
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new styleLintPlugin({
-            configFile: '.stylelintrc',
-            context: 'src',
-            files: '**/*.css',
-            failOnError: false,
-            quiet: false
-        })
+        new webpack.NoErrorsPlugin()
     ],
     resolve: {
         root: path.resolve(__dirname),

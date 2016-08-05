@@ -1,9 +1,14 @@
-.test {
-    font-size: 25px;
-    font-weight: bold;
-    background: url('img/background.jpg');
+.body {
+    background: red;
 }
 
 :fullscreen a {
     display: flex;
 }
+
+.test {
+font-size: 25px;
+font-weight: bold;
+background: url('img/background.jpg');
+}
+

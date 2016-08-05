@@ -1,5 +1,5 @@
 // import vendor
-import jQuery from 'vendor/jquery';
+// import jQuery from 'vendor/jquery';
 
 // import module
 import Main from './assets/main';

@@ -18,7 +18,7 @@ const config = {
                 exclude: /node_modules/,
                 loader: ['babel'],
                 query: {
-                    presets: ['es2015'],
+                    presets: ['es2015', 'stage-0'],
                     plugins: ["transform-runtime"]
                 }
             },
@@ -26,7 +26,7 @@ const config = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract('style', 'css!postcss?')
+                loader: ExtractTextPlugin.extract('style', 'css?minimize!postcss?')
             },
             {
                 test: /\.html.twig$/,
