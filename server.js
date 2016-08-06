@@ -26,7 +26,7 @@ const app = express();
 
 const objData = null;
 
-// // This section is optional and used to configure twig.
+// // This section is used to configure twig.
 app.set('views', __dirname + '/src/views');
 app.set('view engine', 'twig'); 
 app.set("twig options", {
@@ -78,7 +78,7 @@ app.listen(9000);
  * Run Browsersync and use middleware for Hot Module Replacement
  */
 browserSync({
-    open: false,
+    open: process.env.npm_package_config_open,
     logFileChanges: true,
     proxy: {
         target : 'localhost:9000',

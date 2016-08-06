@@ -7,8 +7,20 @@
 }
 
 .test {
-font-size: 25px;
-font-weight: bold;
-background: url('img/background.jpg');
+    font-size: 25px;
+    font-weight: bold;
+    background: url('img/background.jpg');
+
+    @media (--viewport-medium) {
+        font-size: calc(var(--fontSize) * 1.2);
+    }
+
 }
 
+.container {
+    @neat-span-columns 4;
+
+    @media (width >= 768px) {
+        @neat-span-columns 2;
+    }
+}

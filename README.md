@@ -4,7 +4,7 @@ After  ```$ git clone``` make a ```$ npm install``` install all your needed NPM 
 
 # List commmands
 
-* ```$ npm start``` launch an [Express](https://expressjs.com/) + [BrowserSync](https://www.browsersync.io/) local server.
+* ```$ npm run start``` launch an [Express](https://expressjs.com/) + [BrowserSync](https://www.browsersync.io/) local server. IF you want to open your browser when server is ready ```$ npm run start:open```
 * ```$ npm run build:prod``` build, copy all your file and assets in relevant folders : all img go to ```/build/assets/img/``` folder, CSS & JS files go to ```/build/assets/main.(js|css)```, and template file are cpy, with folder hierarchie.
 * ```npm run eslint:test``` perform a full linting of all JS files in ```/src/``` and reporte error in console. Follow the [Standard JS StyleGuide](http://standardjs.com/rules.html) except for indent, who are of 4 spaces.
 * ```npm run eslint:format``` try to format you JS file againt rules defined in ```.eslintrc``` file, if can't prompt for error.
@@ -13,4 +13,4 @@ After  ```$ git clone``` make a ```$ npm install``` install all your needed NPM 
 
 # Tools 
 
-* [rimraf](https://github.com/isaacs/rimraf) for a better ```rm -rf``` : ```npm run rimraf path/to/fileOrFolder```
+* [rimraf](https://github.com/isaacs/rimraf) for a better ```rm -rf``` you can use it with ```$ npm run rimraf <path/to/fileOrFolder>```

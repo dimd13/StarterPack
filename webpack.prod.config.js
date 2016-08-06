@@ -26,7 +26,7 @@ const config = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: ExtractTextPlugin.extract('style', 'css?minimize!postcss?')
+                loader: ExtractTextPlugin.extract('style', 'css!postcss')
             },
             {
                 test: /\.html.twig$/,
@@ -43,16 +43,17 @@ const config = {
     },
     plugins: [
         new ExtractTextPlugin("assets/[name].css",{
-            allChunks: true
+            allChunks: false
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
+        // Uncomment to minify JS and CSS
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // })
     ],
     resolve: {
         root: path.resolve(__dirname),
@@ -71,11 +72,14 @@ const config = {
     postcss: function (webpack) {
         return [
             require('postcss-import')({
-                path: ['node_modules', './src']
+                addDependencyTo: webpack
             }),
-            require('autoprefixer')({
+            require("postcss-url")(),
+            require("postcss-cssnext")({
                 browsers: ['last 2 versions']
-            })
+            }),
+            require('postcss-neat')(/* { options } */),
+            require('css-mqpacker')
         ];
     }
 }

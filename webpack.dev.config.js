@@ -61,7 +61,7 @@ const config = {
         extensions: ['', '.js']
     },
     externals: {
-        // require("jquery") is external and available
+        // import jquery is external and available
         //  on the global var jQuery
         "customImport": "Zepto"
     },
@@ -70,10 +70,14 @@ const config = {
             require('postcss-import')({
                 addDependencyTo: webpack
             }),
-            
-            require('autoprefixer')({
+            require("postcss-url")(),
+            require("postcss-cssnext")({
                 browsers: ['last 2 versions']
-            })
+            }),
+            require('postcss-neat')(/* { options } */),
+            require('css-mqpacker'),
+            require("postcss-browser-reporter")(),
+            require("postcss-reporter")()
         ];
     }
 }
