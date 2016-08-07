@@ -78,7 +78,7 @@ app.listen(9000);
  * Run Browsersync and use middleware for Hot Module Replacement
  */
 browserSync({
-    open: process.env.npm_package_config_open,
+    open: process.argv[2] === 'open' ? true : false,
     logFileChanges: true,
     proxy: {
         target : 'localhost:9000',

@@ -1,13 +1,10 @@
-{##
- # /views/home/home.twig
- #}
-
 {% extends '../../layout.html.twig' %}
 
 {% block title %}{{parent()}} - Home{% endblock title %}
 
 {% block body %}
     Article redev
+    {% include "../header/index.html.twig" %}
     <div class="test">Class .teste</div>
     <button class="button_1">test button</button>
     <img src="./assets/img/background.jpg" alt="" />

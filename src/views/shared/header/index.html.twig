@@ -1,0 +1,9 @@
+{% extends '../../layout.html.twig' %}
+
+{#{% block title %}{{parent()}} - Home{% endblock title %}#}
+
+{% block body %}
+    {{parent()}}
+    header
+    {% include "./navigation/index.html.twig" %}
+{% endblock %}

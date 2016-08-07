@@ -6,15 +6,13 @@
 <html>
 	<head>
 	{% block head %}
+
 		<title>{% block title %}PMD Static{% endblock %}</title>
+
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/4.1.0/sanitize.min.css">
 
 		<link rel="stylesheet" href="assets/main.css">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
 	{% endblock %}
 	</head>
@@ -22,6 +20,7 @@
         Layout
 		{% block body %}
             In Body Block test
+            
 		{% endblock %}
 
         {% block content %}
@@ -30,4 +29,4 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.js"></script>
         <script src="assets/main.js"></script>
 	</body>
-</html> 
+</html>
