@@ -7,7 +7,7 @@ import  'template/layout.html.twig';
 // import img
 import './img/sample.jpg';
 
-import {sum, square, variable, MyClass} from 'template/shared/article/assets/script';
+import {sum, square, variable, MyClass} from 'template/components/home/assets/script';
 
 // 25
 console.log(square(5));

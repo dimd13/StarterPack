@@ -33,34 +33,48 @@ app.set("twig options", {
     strict_variables: false
 });
 
-
-
 fs.readFile('./data/article_photos-khloe-kardashian-la-soeur-de-kim-montre-aussi-ses-fesses-en-une-d-un-magazine-566014.json', 'utf8', function (err, data) {
     if (err) throw err; // we'll not consider error handling for now
     objData = JSON.parse(data);
 });
 
+// app.get('/', function(req, res) {
+//     res.render('./shared/article/index.html.twig', {
+//         data: objData
+//     });
+// });
+
 app.get('/', function(req, res) {
-    res.render('./shared/article/index.html.twig', {
+    res.render('./components/home/index.html.twig', {
         data: objData
     });
 });
 
-app.get('/article', function(req, res) {
-    res.render('./shared/article/index.html.twig', {
-        data: objData
-    });
-});
+// Basic Static Route
+// app.get('/article', function(req, res) {
+//     res.render('./shared/article/index.html.twig', {
+//         data: objData
+//     });
+// });
 
-app.get('/cars', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end("Here are my cars. Beautiful collection, isn't it?");
-});
+// Custom header sample
+// app.get('/cars', function(req, res) {
+//     res.setHeader('Content-Type', 'text/plain');
+//     res.end("Here are my cars. Beautiful collection, isn't it?");
+// });
 
-app.get('/cars/:brand/:color', function(req, res) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('You want to see my ' + req.params.color + ' ' + req.params.brand + '? Follow me.');
-});
+// Dynamic route sample
+// app.get('/cars/:brand/:color', function(req, res) {
+//     res.setHeader('Content-Type', 'text/plain');
+//     res.end('You want to see my ' + req.params.color + ' ' + req.params.brand + '? Follow me.');
+// });
+
+// TODO : Testing this route, with right page/modules and so on
+// app.get('/:page', function(req, res) {
+//     res.render('./components/' + req.params.page + '/index.html.twig', {
+//         data: objData
+//     });
+// });
 
 /*
  * Express server to listen on port : 9000
@@ -70,9 +84,9 @@ app.listen(9000);
 /*
  * If needed Reload all devices when bundle is complete
  */
-// bundler.plugin('done', function (stats) {
-//     browserSync.reload();
-// });
+bundler.plugin('done', function (stats) {
+    browserSync.reload();
+});
 
 /**
  * Run Browsersync and use middleware for Hot Module Replacement

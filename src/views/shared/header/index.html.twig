@@ -1,9 +1,9 @@
-{% extends '../../layout.html.twig' %}
+{#{% extends '../../layout.html.twig' %}#}
 
 {#{% block title %}{{parent()}} - Home{% endblock title %}#}
-
+ {% include "./navigation/index.html.twig" %}
 {% block body %}
-    {{parent()}}
-    header
-    {% include "./navigation/index.html.twig" %}
+    {#{{parent()}}#}
+    <div>header</div>
+   
 {% endblock %}
