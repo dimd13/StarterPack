@@ -7,5 +7,5 @@ import Main from './assets/main';
 // import Article from 'template/shared/article/assets/script';
 
 // import Component
-import Home from 'template/components/home/assets/script'
+import Home from 'template/components/home/config'
 

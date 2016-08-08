@@ -9,7 +9,7 @@ const config = {
     entry: [
         'webpack/hot/dev-server',
         'webpack-hot-middleware/client',
-        'index'
+        './src/views/config'
     ],
     output: {
         filename: 'assets/[name].js',
