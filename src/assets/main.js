@@ -1,27 +1,3 @@
-// import stylesheet
-import  './main.css';
-
-// import template
-import  'template/layout.html.twig';
-
-// import img
-import './img/sample.jpg';
-
-import {sum, square, variable, MyClass} from 'template/components/home/assets/script';
-
-// 25
-console.log(square(5));
-
-var cred = {
-    name: 'Ritesh Kumaro',
-    enrollmentNo: 11115078
-}
-
-var x = new MyClass(cred);
-
-//Ritesh Kumaro
-console.log(x.getName()); 
-
 // Load Vendor or/and external dependencys
 // with, or not, to be included to the build
 //
@@ -32,11 +8,7 @@ import $ from 'vendor/jquery/dist/jquery';
 
 $(document).ready( function(){
 
-    console.log('pouet');
-
-    $('.button_1').on('click', function(){
-        console.log('inner pouet');
-    });
+    console.log('jQuery document Ready Main JS');
 
 });
 
@@ -45,6 +17,6 @@ import Zepto from 'customImport';
 
 Zepto(function($){
 
-    alert('Ready to Zepto!')
+    console.log('Zepto externaly loaded from Main.js')
 
 })

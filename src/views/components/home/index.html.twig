@@ -8,9 +8,10 @@
 
 {% block body %}
 
-    <h1>Home Page</h1>
-    
-    <div class="test">Class .teste</div>
-    <button class="button_1">test button</button>
-    <img src="./assets/img/background.jpg" alt="" />
+    <h2>Home Page</h2>
+
+    <img src="./assets/img/sample.jpg" alt="" />
+
+    {% include "../../shared/article/index.html.twig" %}
+
 {% endblock %}

@@ -1,4 +1,5 @@
-import './style.css'
+/*
+ * shared/header/navigation/assets
+ */
 
-// import template
-import  '../index.html.twig';
+console.log( "Navigation Script" );

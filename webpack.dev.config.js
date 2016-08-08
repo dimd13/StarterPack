@@ -9,7 +9,7 @@ const config = {
     entry: [
         'webpack/hot/dev-server',
         'webpack-hot-middleware/client',
-        './src/views/config'
+        'src/views/config'
     ],
     output: {
         filename: 'assets/[name].js',
@@ -58,7 +58,7 @@ const config = {
             vendor: 'node_modules'
         },
         modulesDirectories: ['node_modules', 'src'],
-        extensions: ['', '.js']
+        extensions: ['', '.js', '.css', '.twig']
     },
     externals: {
         // import jquery is external and available
@@ -76,8 +76,8 @@ const config = {
             }),
             require('postcss-neat')(/* { options } */),
             require('css-mqpacker'),
-            require("postcss-browser-reporter")(),
-            require("postcss-reporter")()
+            // require("postcss-browser-reporter")(),
+            // require("postcss-reporter")()
         ];
     }
 }

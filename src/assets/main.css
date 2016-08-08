@@ -66,9 +66,9 @@ body {
 
 /* initial property */
 
-div {
-  display: initial; /* inline */
-}
+/*div {
+  display: initial;
+}*/
 
 
 /* font stuff */

@@ -17,16 +17,15 @@
 	{% endblock %}
 	</head>
 	<body class="body">
-        Layout
-        {% include "../views/shared/header/index.html.twig" %}
+        <h1>Layout</h1>
+        {% block header %}
+            {% include "./shared/header/index.html.twig" %}
+        {% endblock %}
+
 		{% block body %}
-            In Body Block test
-            
+            In Layout Block test
 		{% endblock %}
 
-        {% block content %}
-                <img src="assets/img/sample.jpg" alt="" />
-        {% endblock %}
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.js"></script>
         <script src="assets/main.js"></script>
 	</body>
