@@ -2,7 +2,7 @@
  * Shared/article
  */
 
-import './assets/script'
+import './assets/script';
 import './assets/style';
 
 // import template

@@ -1,11 +1,5 @@
-/* custom properties */
-
-:root {
-    --fontSize: 1rem;
-    --mainColor: #123456;
-    --highlightColor: hwb(190, 35%, 20%);
-}
-
+/* import VAR */
+@import "./var.css";
 
 /* custom media queries definition */
 

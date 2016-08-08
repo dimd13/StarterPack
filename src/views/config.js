@@ -1,7 +1,7 @@
 // First of all import Main Module composants.
 
 // import Main JS
-import '../assets/main';
+import '../assets/main.js';
 
 // import Main CSS
 import  '../assets/main.css';

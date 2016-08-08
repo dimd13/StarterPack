@@ -2,6 +2,8 @@
  * Shared/article/assets
  */
 
+@import '../../../../assets/var.css'
+
 .body {
     background: red;
 }
