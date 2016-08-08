@@ -2,7 +2,7 @@
  * Shared/article/assets
  */
 
-@import '../../../../assets/var.css'
+/*@import '../../../../assets/var.css'*/
 
 .body {
     background: red;
@@ -15,7 +15,7 @@
 .test {
     font-size: 25px;
     font-weight: bold;
-    background: url('img/background.jpg');
+    background: url('/img/background.jpg');
 
     @media (--viewport-medium) {
         font-size: calc(var(--fontSize) * 1.2);

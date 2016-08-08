@@ -30,7 +30,7 @@ const config = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: 'style!css?sourceMap&importLoaders=1!postcss'
+                loader: 'style!css?sourceMap!postcss'
             },
             {
                 test: /\.html.twig$/,
@@ -69,7 +69,7 @@ const config = {
         return [
             require('postcss-import')({
                 addDependencyTo: webpack,
-                path: ["src/assets/"]
+                // path: ["src/assets/"]
             }),
             require("postcss-url")(),
             require("postcss-cssnext")({
