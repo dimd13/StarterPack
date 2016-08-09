@@ -1,10 +1,6 @@
 /* import VAR */
 @import "./var.css";
 
-/* custom media queries definition */
-
-@custom-media --viewport-medium (width<=50rem);
-
 /* some var() & calc() */
 
 body {

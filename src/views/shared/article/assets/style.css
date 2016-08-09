@@ -2,7 +2,7 @@
  * Shared/article/assets
  */
 
-/*@import '../../../../assets/var.css'*/
+@import '../../../../assets/var.css';
 
 .body {
     background: red;

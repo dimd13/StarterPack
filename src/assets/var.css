@@ -5,3 +5,7 @@
     --mainColor: #123456;
     --highlightColor: hwb(190, 35%, 20%);
 }
+
+/* custom media queries definition */
+
+@custom-media --viewport-medium (width<=50rem);

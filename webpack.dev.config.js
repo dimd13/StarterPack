@@ -30,7 +30,7 @@ const config = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: 'style!css?sourceMap!postcss'
+                loader: 'style!css?sourceMap&importLoaders=1!postcss'
             },
             {
                 test: /\.html.twig$/,
@@ -57,7 +57,7 @@ const config = {
             template: 'src/views',
             vendor: 'node_modules'
         },
-        modulesDirectories: ['node_modules', 'src'],
+        modulesDirectories: ['node_modules', './src'],
         extensions: ['', '.js', '.css', '.twig']
     },
     externals: {
@@ -68,8 +68,7 @@ const config = {
     postcss: function (webpack) {
         return [
             require('postcss-import')({
-                addDependencyTo: webpack,
-                // path: ["src/assets/"]
+                addDependencyTo: webpack
             }),
             require("postcss-url")(),
             require("postcss-cssnext")({
@@ -77,8 +76,8 @@ const config = {
             }),
             require('postcss-neat')(/* { options } */),
             require('css-mqpacker'),
-            // require("postcss-browser-reporter")(),
-            // require("postcss-reporter")()
+            require("postcss-browser-reporter")(),
+            require("postcss-reporter")()
         ];
     }
 }
