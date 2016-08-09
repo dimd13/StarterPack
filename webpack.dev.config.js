@@ -75,7 +75,9 @@ const config = {
                 browsers: ['last 2 versions']
             }),
             require('postcss-neat')(/* { options } */),
-            require('css-mqpacker'),
+            require('css-mqpacker')({
+                sort: true
+            }),
             require("postcss-browser-reporter")(),
             require("postcss-reporter")()
         ];

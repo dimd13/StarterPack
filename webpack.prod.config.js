@@ -5,7 +5,7 @@ const path = require('path');
 
 const config = {
     context: path.join(__dirname, 'src'),
-    entry: 'index',
+    entry: 'src/views/config',
     output: {
         filename: 'assets/[name].js',
         path: path.join(__dirname, 'build'),
@@ -61,8 +61,8 @@ const config = {
             template: 'src/views',
             vendor: 'node_modules'
         },
-        modulesDirectories: ['node_modules', 'src'],
-        extensions: ['', '.js']
+        modulesDirectories: ['node_modules', './src'],
+        extensions: ['', '.js', '.css', '.twig']
     },
     externals: {
         // require("jquery") is external and available
@@ -79,7 +79,9 @@ const config = {
                 browsers: ['last 2 versions']
             }),
             require('postcss-neat')(/* { options } */),
-            require('css-mqpacker')
+            require('css-mqpacker')({
+                sort: true
+            })
         ];
     }
 }
