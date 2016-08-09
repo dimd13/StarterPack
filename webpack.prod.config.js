@@ -42,9 +42,7 @@ const config = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("assets/[name].css",{
-            allChunks: false
-        }),
+        new ExtractTextPlugin("assets/[name].css"),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.DedupePlugin(),
