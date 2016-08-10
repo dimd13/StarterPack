@@ -60,7 +60,6 @@
     "eslint-plugin-promise": "^2.0.0",
     "eslint-plugin-standard": "^2.0.0",
     "express": "^4.13.3",
-    "mdcss": "^1.5.2",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-reporter": "^1.4.1",
     "stylefmt": "^4.2.3",
