@@ -13,6 +13,7 @@ $(document).ready( function(){
 });
 
 // import Zepto but without include it to the build
+// See external{} in webpack.dev.config.js
 import Zepto from 'customImport';
 
 Zepto(function($){

@@ -7,7 +7,7 @@ import '../assets/main.js';
 import  '../assets/main.css';
 
 // import Main Layout
-import  './layout.html.twig';
+import  './layout.html';
 
 // import Main Images
 import '../assets/img/sample.jpg';

@@ -54,6 +54,7 @@
   "homepage": "https://github.com/ethyde/StarterPack#readme",
   "devDependencies": {
     "browser-sync": "^2.13.0",
+    "css-mqpacker": "^5.0.1",
     "eslint": "^3.2.2",
     "eslint-config-standard": "^5.3.5",
     "eslint-loader": "^1.5.0",
