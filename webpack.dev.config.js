@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const config = {
     devtool: '#inline-source-map',
     context: path.join(__dirname, 'src'),
@@ -24,7 +22,7 @@ const config = {
                 loader: 'babel',
                 query: {
                     presets: ['es2015', 'stage-0'],
-                    plugins: ["transform-runtime"]
+                    plugins: ['transform-runtime']
                 }
             },
             {
