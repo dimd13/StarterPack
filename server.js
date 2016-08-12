@@ -12,6 +12,8 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 // const fs = require('fs');
 const express = require('express');
 
+const Twig = require('twig');
+
 /**
  * Require ./webpack.config.js and make a bundle with it
  */
@@ -85,9 +87,9 @@ app.listen(9000);
 /*
  * If needed Reload all devices when bundle is complete
  */
-bundler.plugin('done', function (stats) {
-    browserSync.reload();
-});
+// bundler.plugin('done', function (stats) {
+//     browserSync.reload();
+// });
 
 // /**
 //  * Run Browsersync and use middleware for Hot Module Replacement

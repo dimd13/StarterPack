@@ -33,7 +33,7 @@ const config = {
             {
                 test: /\.html.twig$/,
                 exclude: /node_modules/,
-                loader: "twig"
+                loader: 'twig'
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,

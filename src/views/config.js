@@ -4,7 +4,7 @@
 import '../assets/main.js';
 
 // import Main CSS
-import  '../assets/main.css';
+import  '../assets/main';
 
 // import Main Images
 import '../assets/img/sample.jpg';
