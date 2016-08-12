@@ -6,9 +6,6 @@ import '../assets/main.js';
 // import Main CSS
 import  '../assets/main.css';
 
-// import Main Layout
-import  './layout.html';
-
 // import Main Images
 import '../assets/img/sample.jpg';
 

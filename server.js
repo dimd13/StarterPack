@@ -30,7 +30,8 @@ const objData = null;
 app.set('views', __dirname + '/src/views');
 app.set('view engine', 'twig'); 
 app.set("twig options", {
-    strict_variables: false
+    strict_variables: false,
+    namespaces: { 'pmd': './src/views/' }
 });
 
 fs.readFile('./data/article_photos-khloe-kardashian-la-soeur-de-kim-montre-aussi-ses-fesses-en-une-d-un-magazine-566014.json', 'utf8', function (err, data) {
