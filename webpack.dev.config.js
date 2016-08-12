@@ -61,23 +61,23 @@ const config = {
     externals: {
         // import jquery is external and available
         //  on the global var jQuery
-        "customImport": "Zepto"
+        customImport: "Zepto"
     },
     postcss: function (webpack) {
         return [
             require('postcss-import')({
                 addDependencyTo: webpack
             }),
-            require("postcss-url")(),
-            require("postcss-cssnext")({
+            require('postcss-url')(),
+            require('postcss-cssnext')({
                 browsers: ['last 2 versions']
             }),
             require('postcss-neat')(/* { options } */),
             require('css-mqpacker')({
                 sort: true
             }),
-            require("postcss-browser-reporter")(),
-            require("postcss-reporter")()
+            require('postcss-browser-reporter')(),
+            require('postcss-reporter')()
         ];
     }
 }

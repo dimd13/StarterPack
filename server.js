@@ -9,16 +9,18 @@ const browserSync          = require('browser-sync');
 const webpack              = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+// /**
+//  * Require ./webpack.config.js and make a bundle with it
+//  */
+const webpackConfig = require('./webpack.dev.config');
+const bundler       = webpack(webpackConfig);
+
+
 // const fs = require('fs');
 const express = require('express');
 
 const Twig = require('twig');
 
-/**
- * Require ./webpack.config.js and make a bundle with it
- */
-const webpackConfig = require('./webpack.dev.config');
-const bundler       = webpack(webpackConfig);
 // Load Express for Twig
 const app = express();
 
@@ -30,7 +32,7 @@ const objData = null;
 
 // // This section is used to configure twig.
 app.set('views', __dirname + '/src/views');
-app.set('view engine', 'twig'); 
+app.set('view engine', 'twig');
 app.set('twig options', {
     strict_variables: false,
     namespaces: { 'pmd': './src/views/' }
