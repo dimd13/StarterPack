@@ -89,9 +89,9 @@ app.listen(9000);
 /*
  * If needed Reload all devices when bundle is complete
  */
-// bundler.plugin('done', function (stats) {
-//     browserSync.reload();
-// });
+bundler.plugin('done', function (stats) {
+    browserSync.reload();
+});
 
 // /**
 //  * Run Browsersync and use middleware for Hot Module Replacement
@@ -119,7 +119,6 @@ browserSync({
     },
     files: [
         'src/**/*.css',
-        'src/**/*.js',
-        'src/**/*.html.twig'
+        'src/**/*.js'
     ]
 });

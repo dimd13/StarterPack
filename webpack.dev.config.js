@@ -5,8 +5,8 @@ const config = {
     devtool: '#inline-source-map',
     context: path.join(__dirname, 'src'),
     entry: [
-        'webpack/hot/dev-server',
-        'webpack-hot-middleware/client',
+        // 'webpack/hot/dev-server',
+        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
         'src/views/config'
     ],
     output: {
@@ -31,11 +31,6 @@ const config = {
                 loader: 'style!css?sourceMap&importLoaders=1!postcss'
             },
             {
-                test: /\.html.twig$/,
-                exclude: /node_modules/,
-                loader: 'twig'
-            },
-            {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     'file?&name=./assets/img/[name].[ext]',
@@ -56,7 +51,7 @@ const config = {
             vendor: 'node_modules'
         },
         modulesDirectories: ['node_modules', './src'],
-        extensions: ['', '.js', '.css', '.twig']
+        extensions: ['', '.js', '.css']
     },
     externals: {
         // import jquery is external and available
