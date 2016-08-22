@@ -1,14 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const config = {
     devtool: '#inline-source-map',
     context: path.join(__dirname, 'src'),
     entry: [
-        'webpack/hot/dev-server',
-        'webpack-hot-middleware/client',
+        // 'webpack/hot/dev-server',
+        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
         'src/views/config'
     ],
     output: {
@@ -24,7 +22,7 @@ const config = {
                 loader: 'babel',
                 query: {
                     presets: ['es2015', 'stage-0'],
-                    plugins: ["transform-runtime"]
+                    plugins: ['transform-runtime']
                 }
             },
             {
@@ -34,8 +32,7 @@ const config = {
             },
             {
                 test: /\.html.twig$/,
-                exclude: /node_modules/,
-                loader: "twig"
+                loader: "file?name=[path][name].[ext]"
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
@@ -58,28 +55,28 @@ const config = {
             vendor: 'node_modules'
         },
         modulesDirectories: ['node_modules', './src'],
-        extensions: ['', '.js', '.css', '.twig']
+        extensions: ['', '.js', '.css']
     },
     externals: {
         // import jquery is external and available
         //  on the global var jQuery
-        "customImport": "Zepto"
+        customImport: "Zepto"
     },
     postcss: function (webpack) {
         return [
             require('postcss-import')({
                 addDependencyTo: webpack
             }),
-            require("postcss-url")(),
-            require("postcss-cssnext")({
+            require('postcss-url')(),
+            require('postcss-cssnext')({
                 browsers: ['last 2 versions']
             }),
             require('postcss-neat')(/* { options } */),
             require('css-mqpacker')({
                 sort: true
             }),
-            require("postcss-browser-reporter")(),
-            require("postcss-reporter")()
+            require('postcss-browser-reporter')(),
+            require('postcss-reporter')()
         ];
     }
 }
