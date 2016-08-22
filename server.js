@@ -16,10 +16,12 @@ const webpackConfig = require('./webpack.dev.config');
 const bundler       = webpack(webpackConfig);
 
 
-// const fs = require('fs');
+const fs = require('fs');
 const express = require('express');
 
 const Twig = require('twig');
+
+const createEngine = require('node-twig').createEngine;
 
 // Load Express for Twig
 const app = express();
@@ -28,20 +30,27 @@ const app = express();
  * Define empty object to store data
  */
 
-const objData = null;
+app.engine('.twig', createEngine({
+  root: __dirname + '/src/views'
+}));
+
+var articleData = null;
 
 // // This section is used to configure twig.
 app.set('views', __dirname + '/src/views');
 app.set('view engine', 'twig');
-app.set('twig options', {
-    strict_variables: false,
-    namespaces: { 'pmd': './src/views/' }
+
+fs.readFile('data/data.json', 'utf8', function (err, data) {
+    if (err) {
+        console.log('Error: ' + err);
+        return;
+    }
+
+    articleData = JSON.parse(data);
+
+    console.dir(articleData);
 });
 
-// fs.readFile('./data/article_photos-khloe-kardashian-la-soeur-de-kim-montre-aussi-ses-fesses-en-une-d-un-magazine-566014.json', 'utf8', function (err, data) {
-//     if (err) throw err; // we'll not consider error handling for now
-//     objData = JSON.parse(data);
-// });
 
 // app.get('/', function(req, res) {
 //     res.render('./shared/article/index.html.twig', {
@@ -51,7 +60,11 @@ app.set('twig options', {
 
 app.get('/', function(req, res) {
     res.render('./components/home/index.html.twig', {
-        data: objData
+        context: {
+            foo: 'bar',
+            stuff: ['This', 'can', 'be', 'anything'],
+            pageData: articleData
+        }
     });
 });
 
@@ -89,9 +102,9 @@ app.listen(9000);
 /*
  * If needed Reload all devices when bundle is complete
  */
-bundler.plugin('done', function (stats) {
-    browserSync.reload();
-});
+// bundler.plugin('done', function (stats) {
+//     browserSync.reload();
+// });
 
 // /**
 //  * Run Browsersync and use middleware for Hot Module Replacement
@@ -119,6 +132,7 @@ browserSync({
     },
     files: [
         'src/**/*.css',
-        'src/**/*.js'
+        'src/**/*.js',
+        'src/**/*.twig'
     ]
 });

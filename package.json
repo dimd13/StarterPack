@@ -7,8 +7,7 @@
     "npm": "^3.3.6"
   },
   "scripts": {
-    "nodemon": "./node_modules/.bin/nodemon",
-    "server": "nodemon -w src -e .twig -q server.js",
+    "server": "node server",
     "server:open": "node server open",
     "clean:build": "npm run rimraf build",
     "build:prod": "npm run clean:build && webpack --progress --colors --config webpack.prod.config.js",
@@ -53,7 +52,7 @@
     "file-loader": "^0.9.0",
     "image-webpack-loader": "^2.0.0",
     "jquery": "^3.1.0",
-    "nodemon": "^1.10.0",
+    "node-twig": "^1.1.0",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cssnext": "^2.7.0",
     "postcss-import": "^8.1.2",
@@ -66,8 +65,6 @@
     "stylefmt": "^4.2.3",
     "stylelint": "^7.1.0",
     "stylelint-config-standard": "^12.0.0",
-    "twig": "^0.9.5",
-    "twig-loader": "^0.2.3",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.2"
