@@ -2,45 +2,43 @@
  * index.js
  */
 
-// /**
-//  * Require Browsersync along with webpack and middleware for it
-//  */
+/**
+ * Require Browsersync along with webpack and middleware for it
+ */
 const browserSync          = require('browser-sync');
 const webpack              = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-// /**
-//  * Require ./webpack.config.js and make a bundle with it
-//  */
+const fs = require('fs');
+const express = require('express');
+/**
+ * Require ./webpack.config.js and make a bundle with it
+ */
 const webpackConfig = require('./webpack.dev.config');
 const bundler       = webpack(webpackConfig);
 
-
-const fs = require('fs');
-const express = require('express');
-
-const Twig = require('twig');
-
+// Create Enginee for Twig
 const createEngine = require('node-twig').createEngine;
 
-// Load Express for Twig
+// Init Express for Twig
 const app = express();
 
 /**
  * Define empty object to store data
  */
 
+var articleData = null;
+
 app.engine('.twig', createEngine({
-  root: __dirname + '/src/views',
-  extensions: [
-    {
-      file: __dirname + '/twigDump.php',
-      func: 'twigDumpExtension'
-    }
-  ]
+    root: __dirname + '/src/views',
+    extensions: [
+        {
+            file: __dirname + '/extensions/twigDump.php',
+            func: 'twigDumpExtension'
+        }
+    ]
 }));
 
-var articleData = null;
 
 // // This section is used to configure twig.
 app.set('views', __dirname + '/src/views');
@@ -108,13 +106,14 @@ app.listen(9000);
 /*
  * If needed Reload all devices when bundle is complete
  */
+
 // bundler.plugin('done', function (stats) {
 //     browserSync.reload();
 // });
 
-// /**
-//  * Run Browsersync and use middleware for Hot Module Replacement
-//  */
+/**
+ * Run Browsersync and use middleware for Hot Module Replacement
+ */
 browserSync({
     open: process.argv[2] === 'open' ? true : false,
     logFileChanges: true,
