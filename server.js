@@ -31,7 +31,13 @@ const app = express();
  */
 
 app.engine('.twig', createEngine({
-  root: __dirname + '/src/views'
+  root: __dirname + '/src/views',
+  extensions: [
+    {
+      file: __dirname + '/twigDump.php',
+      func: 'twigDumpExtension'
+    }
+  ]
 }));
 
 var articleData = null;
