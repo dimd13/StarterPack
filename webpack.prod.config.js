@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
+const configSite = require('./project.config.js');
+
 
 const config = {
     context: path.join(__dirname, 'src'),
@@ -70,13 +72,16 @@ const config = {
     postcss: function (webpack) {
         return [
             require('postcss-import')({
+                path: './src/',
                 addDependencyTo: webpack
             }),
             require("postcss-url")(),
-            require("postcss-cssnext")({
-                browsers: ['last 2 versions']
-            }),
-            require('postcss-neat')(/* { options } */),
+            require('postcss-cssnext')(
+                configSite.cssNextConfig
+            ),
+            require('postcss-neat')(
+                configSite.neatConfig
+            ),
             require('css-mqpacker')({
                 sort: true
             })

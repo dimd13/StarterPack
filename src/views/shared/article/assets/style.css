@@ -2,10 +2,10 @@
  * Shared/article/assets
  */
 
-@import '../../../../assets/var.css';
+@import "vars.css";
 
 .body {
-    background: red;
+    background: blue;
 }
 
 :fullscreen a {

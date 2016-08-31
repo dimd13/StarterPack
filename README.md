@@ -3,8 +3,9 @@
 ```
 $ git clone git@github.com:ethyde/StarterPack.git
 $ cd StarterPack
-$ npm install
+$ npm install && npm run server open
 ```
+Will install al base NPM packages, start server and open home page.
 
 # List commmands
 
@@ -18,3 +19,9 @@ $ npm install
 # Tools 
 
 * [rimraf](https://github.com/isaacs/rimraf) for a better/crossplatform ```rm -rf``` you can use it with ```$ npm run rimraf <path/to/fileOrFolder>```
+
+# Usage
+
+All the path configurations should be administrable from file : ```project.config.js```. You can easly change where are stored views or assets folder by this way.
+
+```extensions``` are used to regroupe twigExtensions file who are used to mimic  some custom filter, functions.

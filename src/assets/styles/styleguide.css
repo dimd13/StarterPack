@@ -1,5 +1,5 @@
 /* import VAR */
-@import "./var.css";
+@import "vars.css";
 
 /* some var() & calc() */
 
@@ -18,7 +18,6 @@ body {
         font-size: calc(var(--fontSize) * 1.2);
     }
 }
-
 
 /* custom selectors defintion */
 
@@ -47,57 +46,4 @@ a:active {
 
 a:any-link {
     color: color(var(--highlightColor) blackness(+20%))
-}
-
-body {
-  background: rgba(153, 221, 153, 0.8);
-  /* you will have the same value without alpha as a fallback */
-}
-
-/* initial property */
-
-/*div {
-  display: initial;
-}*/
-
-
-/* font stuff */
-
-h2 {
-    font-variant-caps: small-caps;
-}
-
-table {
-    font-variant-numeric: lining-nums;
-}
-
-
-/* nesting sample */
-
-a {
-  /* direct nesting (& MUST be the first part of selector)*/
-  & span {
-    color: white;
-  }
-
-  /* @nest rule (for complex nesting) */
-  @nest span & {
-    color: blue;
-  }
-
-  /* media query automatic nesting */
-  @media (min-width: 30em) {
-    color: yellow;
-  }
-}
-
-
-/* filters */
-
-.blur {
-    filter: blur(4px)
-}
-
-.sepia {
-    filter: sepia(.8);
 }

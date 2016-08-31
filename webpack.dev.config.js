@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const configSite = require('./project.config.js');
+
 const config = {
     devtool: '#inline-source-map',
     context: path.join(__dirname, 'src'),
@@ -40,6 +42,10 @@ const config = {
                     'file?&name=./assets/img/[name].[ext]',
                     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
+            },
+            {
+                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+                loader: "file"
             }
         ]
     },
@@ -54,7 +60,7 @@ const config = {
             template: 'src/views',
             vendor: 'node_modules'
         },
-        modulesDirectories: ['node_modules', './src'],
+        modulesDirectories: ['node_modules'],
         extensions: ['', '.js', '.css']
     },
     externals: {
@@ -65,13 +71,16 @@ const config = {
     postcss: function (webpack) {
         return [
             require('postcss-import')({
+                path: path.join(__dirname, 'src/assets/styles'), // Du to some bug with resolve of relative/absolute path we need to define it here ATM
                 addDependencyTo: webpack
             }),
             require('postcss-url')(),
-            require('postcss-cssnext')({
-                browsers: ['last 2 versions']
-            }),
-            require('postcss-neat')(/* { options } */),
+            require('postcss-cssnext')(
+                configSite.cssNextConfig
+            ),
+            require('postcss-neat')(
+                configSite.neatConfig
+            ),
             require('css-mqpacker')({
                 sort: true
             }),
