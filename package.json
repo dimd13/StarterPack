@@ -1,7 +1,8 @@
 {
-  "name": "pmd",
-  "version": "0.0.3",
-  "description": "Base files, folder structure, components based, SRP.",
+  "name": "starterpack",
+  "version": "0.0.8",
+  "description": "Complete Front-End workflow with Webpack, Babel, PostCss and real php Twig",
+  "private": false,
   "homepage": "https://github.com/ethyde/StarterPack#readme",
   "repository": {
     "type": "git",
@@ -51,6 +52,7 @@
     "express": "^3.21.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "fontgen-loader": "git+ssh://git@github.com/DragonsInn/fontgen-loader.git#pull/23/head",
     "image-webpack-loader": "^2.0.0",
     "jquery": "^3.1.0",
     "node-twig": "^1.1.0",
@@ -62,6 +64,7 @@
     "postcss-reporter": "^1.4.1",
     "postcss-url": "^5.1.2",
     "rimraf": "^2.5.4",
+    "request": "^2.74.0",
     "style-loader": "^0.13.1",
     "stylefmt": "^4.2.3",
     "stylelint": "^7.1.0",

@@ -9,19 +9,27 @@ const browserSync          = require('browser-sync');
 const webpack              = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackConfig        = require('./webpack.dev.config');
+const bundler              = webpack(webpackConfig);
+
+/**
+ * Require some tools path, fs, express, etc.
+ */
+const path = require('path');
 const fs = require('fs');
 const express = require('express');
-/**
- * Require ./webpack.config.js and make a bundle with it
- */
-const webpackConfig = require('./webpack.dev.config');
-const bundler       = webpack(webpackConfig);
+const request = require('request');
 
 // Create Enginee for Twig
 const createEngine = require('node-twig').createEngine;
 
 // Init Express for Twig
 const app = express();
+
+/**
+*   Config Object to specify paths to views, css, js and assets
+*/
+const configVars = require('./project.config.js');
 
 /**
  * Define empty object to store data
@@ -39,9 +47,28 @@ app.engine('.twig', createEngine({
     ]
 }));
 
+app.engine('.twig', createEngine({
+    root: configVars.viewsPath,
+    extensions: [
+        {
+            file: path.join(__dirname, '/extensions/twigExtensions.php'),
+            func: 'twigExtensions'
+        },
+        {
+            file: path.join(__dirname, '/extensions/twigExtensionFunctions.php'),
+            func: 'twigExtensionFunctions'
+        },
+        {
+            file: path.join(__dirname, '/extensions/twigExtensionFilters.php'),
+            func: 'twigExtensionFilters'
+        }
+    ],
+    aliases: configVars.aliases
+}));
+
 
 // // This section is used to configure twig.
-app.set('views', __dirname + '/src/views');
+app.set('views', configVars.viewsPath);
 app.set('view engine', 'twig');
 
 fs.readFile('data/data.json', 'utf8', function (err, data) {
@@ -55,6 +82,22 @@ fs.readFile('data/data.json', 'utf8', function (err, data) {
     console.dir(articleData);
 });
 
+//Lets configure and request
+// request({
+//     url: 'http://modulus.io', //URL to hit
+//     qs: {from: 'blog example', time: +new Date()}, //Query string data
+//     method: 'GET', //Specify the method
+//     headers: { //We can define headers too
+//         'Content-Type': 'MyContentType',
+//         'Custom-Header': 'Custom Value'
+//     }
+// }, function(error, response, body){
+//     if(error) {
+//         console.log(error);
+//     } else {
+//         console.log(response.statusCode, body);
+//     }
+// });
 
 // app.get('/', function(req, res) {
 //     res.render('./shared/article/index.html.twig', {
@@ -69,6 +112,12 @@ app.get('/', function(req, res) {
             stuff: ['This', 'can', 'be', 'anything'],
             pageData: articleData
         }
+    });
+});
+
+app.get('/', function(req, res) {
+    res.render(configVars.homePage, {
+        context: articleData,
     });
 });
 
@@ -107,9 +156,9 @@ app.listen(9000);
  * If needed Reload all devices when bundle is complete
  */
 
-// bundler.plugin('done', function (stats) {
-//     browserSync.reload();
-// });
+bundler.plugin('done', function (stats) {
+    browserSync.reload();
+});
 
 /**
  * Run Browsersync and use middleware for Hot Module Replacement
@@ -136,8 +185,8 @@ browserSync({
         ]
     },
     files: [
-        'src/**/*.css',
-        'src/**/*.js',
-        'src/**/*.twig'
+        configVars.assetsPath + '/**/*.css',
+        configVars.assetsPath + '/**/*.js',
+        configVars.viewsPath + '/**/*.twig'
     ]
 });

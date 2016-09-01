@@ -2,7 +2,7 @@
  * components/home/assets
  */
 
-@import '../../../../assets/main.css';
+@import "vars.css";
 
 .test {
     font-size: 80px;
