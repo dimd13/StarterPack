@@ -10,16 +10,11 @@ const path = require('path');
 *   aliases: Aliases for the templates
 */
 const configSite = {
-    homePage : './Styleguide/view.html.twig',
+    homePage : './components/home/index.html.twig',
     viewsPath : path.join(__dirname, '/src/views'),
-    cssPath : 'static',
-    jsPath : 'static',
-    assets : {
-        route : '/telfront',
-        path : path.join(__dirname, '/../../web/telfront')
-    },
+    assetsPath : './src/assets',
     aliases: {
-        'PMDTELFront': path.join(__dirname, '/../../src/PMD/TEL/FrontBundle/Resources/views')
+        'STARTERPack': path.join(__dirname, '/src/views')
     },
     neatConfig: {
         neatMaxWidth: "1170px",

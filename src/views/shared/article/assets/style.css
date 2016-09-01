@@ -4,9 +4,9 @@
 
 @import "vars.css";
 
-.body {
-    background: blue;
-}
+/*.body {
+    background: pink;
+}*/
 
 :fullscreen a {
     display: flex;
@@ -22,10 +22,10 @@
 
 }
 
-.container {
+/*.container {
     @neat-span-columns 4;
 
     @media (width >= 768px) {
         @neat-span-columns 2;
     }
-}
+}*/

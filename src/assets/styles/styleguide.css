@@ -7,7 +7,7 @@ body {
     color: var(--mainColor);
     font-size: var(--fontSize);
     line-height: calc(var(--fontSize) * 1.5);
-    padding: calc((var(--fontSize) / 2)+ 1px)
+    padding: calc((var(--fontSize) / 2)+ 1px);
 }
 
 

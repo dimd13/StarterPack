@@ -115,6 +115,12 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/', function(req, res) {
+    res.render(configVars.homePage, {
+        context: articleData,
+    });
+});
+
 // Basic Static Route
 // app.get('/article', function(req, res) {
 //     res.render('./shared/article/index.html.twig', {
@@ -179,8 +185,8 @@ browserSync({
         ]
     },
     files: [
-        configVars.cssPath + '/**/*.css',
-        configVars.cssPath + '/**/*.js',
+        configVars.assetsPath + '/**/*.css',
+        configVars.assetsPath + '/**/*.js',
         configVars.viewsPath + '/**/*.twig'
     ]
 });

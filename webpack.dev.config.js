@@ -7,7 +7,6 @@ const config = {
     devtool: '#inline-source-map',
     context: path.join(__dirname, 'src'),
     entry: [
-        // 'webpack/hot/dev-server',
         'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
         'src/views/config'
     ],
