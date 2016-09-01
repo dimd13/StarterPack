@@ -99,34 +99,22 @@ fs.readFile('data/data.json', 'utf8', function (err, data) {
 //     }
 // });
 
+// Basic Static route
 // app.get('/', function(req, res) {
-//     res.render('./shared/article/index.html.twig', {
-//         data: objData
+//     res.render('./components/home/index.html.twig', {
+//         context: {
+//             foo: 'bar',
+//             stuff: ['This', 'can', 'be', 'anything'],
+//             pageData: articleData
+//         }
 //     });
 // });
-
-app.get('/', function(req, res) {
-    res.render('./components/home/index.html.twig', {
-        context: {
-            foo: 'bar',
-            stuff: ['This', 'can', 'be', 'anything'],
-            pageData: articleData
-        }
-    });
-});
 
 app.get('/', function(req, res) {
     res.render(configVars.homePage, {
         context: articleData,
     });
 });
-
-// Basic Static Route
-// app.get('/article', function(req, res) {
-//     res.render('./shared/article/index.html.twig', {
-//         data: objData
-//     });
-// });
 
 // Custom header sample
 // app.get('/cars', function(req, res) {
@@ -140,12 +128,11 @@ app.get('/', function(req, res) {
 //     res.end('You want to see my ' + req.params.color + ' ' + req.params.brand + '? Follow me.');
 // });
 
-// TODO : Testing this route, with right page/modules and so on
-// app.get('/:page', function(req, res) {
-//     res.render('./components/' + req.params.page + '/index.html.twig', {
-//         data: objData
-//     });
-// });
+app.get('/:controller/:page', function(req, res) {
+    res.render('./' + req.params.controller + '/' + req.params.page + '.html.twig', {
+        context: articleData,
+    });
+});
 
 /*
  * Express server to listen on port : 9000
